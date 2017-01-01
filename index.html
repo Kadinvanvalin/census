@@ -17,7 +17,7 @@ $(function() {
 	function test(){
 		function getSummonerId (){
 			
-			var URL = "api.census.gov/data/2016/pep/components?get=BIRTHS,DEATHS,GEONAME&for=state:06&PERIOD=7";
+			var URL = "http://api.census.gov/data/2016/pep/components?get=BIRTHS,DEATHS,GEONAME&for=state:06&PERIOD=7";
 			return $.getJSON(URL, {
 				key:"a912e352a634b630f370a38232e3a6a2c7c01a2e",
 			});
