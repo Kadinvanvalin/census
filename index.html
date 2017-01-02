@@ -10,28 +10,5 @@
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
-<script>
-
-$(function() {
-    console.log( "ready!" );
-	function test(){
-		function getSummonerId (){
-			
-			var URL = "http://api.census.gov/data/2016/pep/components?get=BIRTHS,DEATHS,GEONAME&for=state:06&PERIOD=7";
-			return $.getJSON(URL, {
-				key:"a912e352a634b630f370a38232e3a6a2c7c01a2e",
-			});
-		}
-		var promised = getSummonerId();
-		//arrow functions
-		promised.done(function(data){
-			console.log(data);
-		});
-		promised.fail(function(data){
-			setTimeout(test, 10000 )});
-
-	}
-	test();
- });
-</script>
+<script type="text/javascript" src="app.js"></script>
 </html>
