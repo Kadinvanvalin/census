@@ -129,8 +129,9 @@ let state = stateFIPS[keypress].FIPS;
            } 
            console.log(obj);     
    }
-	function test(){
-		//api call 
+	function test(num){
+		
+		let state= stateFIPS[num].FIPS
 				function birthsDeathsCalifornia (){
 			var URL = "https://api.census.gov/data/2016/pep/components?";
 			return $.getJSON(URL, {
@@ -148,10 +149,10 @@ let state = stateFIPS[keypress].FIPS;
 	}
 
 	//start of code
-	test();
+	
 	
 
-	
+	console.log(stateFIPS);
 // const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
 // const cities = [];
@@ -159,68 +160,46 @@ let state = stateFIPS[keypress].FIPS;
 //   .then(blob => blob.json())
 //   .then(data => cities.push(...data));
 
-// function findMatches(wordToMatch, cities) {
-//   return cities.filter(place => {
-//     // here we need to figure out if the city or state matches what was searched
-//     const regex = new RegExp(wordToMatch, 'gi');
-//     return place.city.match(regex) || place.state.match(regex)
-//   });
-// }
+function findMatches(wordToMatch, stateFIPS) {
+  return stateFIPS.filter(place => {
+  	 
+    // here we need to figure out if the city or state matches what was searched
+    const regex = new RegExp(wordToMatch, 'gi');
+   
+    return place.State.match(regex) 
+  });
+}
 
-// function numberWithCommas(x) {
-//   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-// }
+let canSearch = false;
 
-// function displayMatches() {
-//   const matchArray = findMatches(this.value, cities);
-//   const html = matchArray.map(place => {
-//     const regex = new RegExp(this.value, 'gi');
-//     const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
-//     const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
-//     return `
-//       <li>
-//         <span class="name">${cityName}, ${stateName}</span>
-//         <span class="population">${numberWithCommas(place.population)}</span>
-//       </li>
-//     `;
-//   }).join('');
-//   suggestions.innerHTML = html;
-// }
-// function findMatches(wordToMatch, stateFIPS){
-// 	const regex = new RegExp(wordToMatch, 'gi')
-// 	let ary =[]
-
-// 	for(let key in stateFIPS){
-// 		let bingo = key.match(regex);
-// 		if(bingo){ary.push(bingo);} 
-// 	}
-// 	return ary;
-// }
-
-// function displayMatches(){
-// const matchArray = findMatches(this.value, stateFIPS);
-
-// const html = matchArray.map(place =>{
-// 	console.log(place);
-
-//  	const regex = new RegExp(this.value, 'gi');
-//  	const stateName = place.toString().replace(regex, `<span class="h1">${this.value}</span>`);
-//  	return`
-//  	<li>
-//  		<span class ="name">${stateName}</span>
-//  	</li>
-//  	`;
-
-//  }).join('');
-// 	suggestions.innerHTML = html;
-// }
-
+function displayMatches() {
+  const matchArray = findMatches(this.value, stateFIPS);
+  const html = matchArray.map(place => {
+    const regex = new RegExp(this.value, 'gi');
+    const stateName = place.State.replace(regex, `<span class="hl">${this.value}</span>`);
+    console.log(place);
+    const dex = stateFIPS.indexOf(place);
+    console.log(dex);
+   //const stateID = stateFIPS[dex].FIPS;
+  //console.log(stateID);
+   if(canSearch){
+   		test(dex);
+   		canSearch = false;
+   	}
+    return `
+      <li>
+        <span class="name">${stateName}</span>
+      </li>
+    `;
+  }).join('');
+  suggestions.innerHTML = html;
+}
 
 
 
 
  const searchInput = document.querySelector('.search');
-// const suggestions = document.querySelector('.suggestions');
+ const suggestions = document.querySelector('.suggestions');
 document.querySelector('.search-form').addEventListener('keypress', function (e) {
 	
     let key = e.which || e.keyCode;
@@ -229,10 +208,17 @@ document.querySelector('.search-form').addEventListener('keypress', function (e)
 
       keypress = 5;
       console.log(searchInput);
-      test();
+      	for(let i=0; i < stateFIPS.length; i++){
+      		if(stateFIPS[i].State === $('#query').val()){
+      			canSearch = true;
+      		}
+
+      		  else{console.log('wrong val');}
+      	} 
+    
     }
 });
 
-// searchInput.addEventListener('change', displayMatches);
-// searchInput.addEventListener('keyup', displayMatches);
+ searchInput.addEventListener('change', displayMatches);
+ searchInput.addEventListener('keyup', displayMatches);
  });
