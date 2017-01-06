@@ -113,8 +113,59 @@ $(function() {
     	{State:'VIRGIN ISLANDS',
     		FIPS:78}
     ]
-    let form = document.querySelector(".search-form"); function handleForm(event) { event.preventDefault(); } form.addEventListener('submit', handleForm);
-let keypress = 0;
+    let birthsAndDeaths =[2,2];
+    
+ let ctx = document.getElementById("myChart");  
+let myChart = new Chart(ctx,{
+    type: 'polarArea',
+    data: {
+	  labels: [
+        "Births",
+        "Deaths"
+        
+    ],
+    datasets: [{
+    	 label: 'Birth and deaths', // for legend
+        data: 
+         birthsAndDeaths
+       ,
+        backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+       
+    }]
+},
+    options: {
+
+			
+			scales: {
+				yAxes:  [{
+					ticks: {
+						beginAtZero:true
+					}
+				}]
+			}
+		}
+});
+
+
+
+ let form = document.querySelector(".search-form"); function handleForm(event) { event.preventDefault(); } form.addEventListener('submit', handleForm);
+let keypress = 0;let canSearch = false;
 let state = stateFIPS[keypress].FIPS;
 
     let obj = new Object;
@@ -127,12 +178,14 @@ let state = stateFIPS[keypress].FIPS;
             for(var i = 0; i < stream2.length; i++){
                  obj[stream1[i]] = stream2[i];
            } 
-           console.log(obj);     
+           [birthsAndDeaths[0], birthsAndDeaths[1]] = [obj.BIRTHS, obj.DEATHS];
+           myChart.update();
+           console.log(myChart.data.datasets);     
    }
 	function test(num){
 		
 		let state= stateFIPS[num].FIPS
-				function birthsDeathsCalifornia (){
+				function birthsDeathsState (){
 			var URL = "https://api.census.gov/data/2016/pep/components?";
 			return $.getJSON(URL, {
 				get:"BIRTHS,DEATHS,GEONAME",
@@ -141,7 +194,8 @@ let state = stateFIPS[keypress].FIPS;
 				key:"a912e352a634b630f370a38232e3a6a2c7c01a2e"
 			});
 		}
-		var promised = birthsDeathsCalifornia();
+		http://api.census.gov/data/2010/sf1?key=[user key]&get=PCT012A015,PCT012A119&for=state:01
+		var promised = birthsDeathsState();
 		
 		promised.done((data) => createObject(data));
 		promised.fail(data => setTimeout(test, 10000));
@@ -153,12 +207,7 @@ let state = stateFIPS[keypress].FIPS;
 	
 
 	console.log(stateFIPS);
-// const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
-// const cities = [];
-// fetch(endpoint)
-//   .then(blob => blob.json())
-//   .then(data => cities.push(...data));
 
 function findMatches(wordToMatch, stateFIPS) {
   return stateFIPS.filter(place => {
@@ -170,7 +219,7 @@ function findMatches(wordToMatch, stateFIPS) {
   });
 }
 
-let canSearch = false;
+
 
 function displayMatches() {
   const matchArray = findMatches(this.value, stateFIPS);
@@ -218,6 +267,7 @@ document.querySelector('.search-form').addEventListener('keypress', function (e)
     
     }
 });
+
 
  searchInput.addEventListener('change', displayMatches);
  searchInput.addEventListener('keyup', displayMatches);
