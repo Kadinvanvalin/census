@@ -113,7 +113,7 @@ $(function() {
     	{State:'VIRGIN ISLANDS',
     		FIPS:78}
     ]
-    let birthsAndDeaths =[2,2];
+    let birthsAndDeaths =[0,0];
     
  let ctx = document.getElementById("myChart");  
 let myChart = new Chart(ctx,{
