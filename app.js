@@ -236,7 +236,7 @@ function displayMatches() {
    		canSearch = false;
    	}
     return `
-      <li>
+      <li ID="listItem">
         <span class="name">${stateName}</span>
       </li>
     `;

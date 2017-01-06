@@ -12,7 +12,10 @@
       width: 100%;
       padding:20px;
     }
+button {
+  display:none;
 
+}
     .search-form {
       max-width:400px;
       margin:50px auto;
@@ -40,6 +43,9 @@
       position: relative;
       /*perspective:20px;*/
     }
+    .suggestions ul{
+     position:fixed; 
+    }
     .suggestions li {
       background:white;
       list-style: none;
@@ -61,11 +67,10 @@
       transform: perspective(100px) rotateX(-3deg) translateY(3px);
       background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
     }
-
-    span.population {
-      font-size: 15px;
+    #listItem:hover {
+      background: linear-gradient(to left,  #ffffff 0%,#ffff00 100%);
     }
-
+    
 
     .details {
       text-align: center;
