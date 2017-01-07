@@ -12,10 +12,7 @@
       width: 100%;
       padding:20px;
     }
-button {
-  display:none;
 
-}
     .search-form {
       max-width:400px;
       margin:50px auto;
@@ -43,10 +40,12 @@ button {
       position: relative;
       /*perspective:20px;*/
     }
-    .suggestions ul{
-     position:fixed; 
+    .suggestions {
+      max-width: 400px;
+     position:absolute; 
     }
     .suggestions li {
+
       background:white;
       list-style: none;
       border-bottom: 1px solid #D8D8D8;
@@ -67,9 +66,7 @@ button {
       transform: perspective(100px) rotateX(-3deg) translateY(3px);
       background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
     }
-    #listItem:hover {
-      background: linear-gradient(to left,  #ffffff 0%,#ffff00 100%);
-    }
+  
     
 
     .details {
@@ -89,4 +86,7 @@ button {
       color:black;
       background:rgba(0,0,0,0.1);
       text-decoration: none;
+    }
+  li.listItem:hover {
+      background: linear-gradient(to left,  #ffffff 0%,#ffff00 100%);
     }

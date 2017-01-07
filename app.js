@@ -114,7 +114,7 @@ $(function() {
     		FIPS:78}
     ]
     let birthsAndDeaths =[0,0];
-    
+   
  let ctx = document.getElementById("myChart");  
 let myChart = new Chart(ctx,{
     type: 'polarArea',
@@ -183,7 +183,7 @@ let state = stateFIPS[keypress].FIPS;
            console.log(myChart.data.datasets);     
    }
 	function test(num){
-		
+	
 		let state= stateFIPS[num].FIPS
 				function birthsDeathsState (){
 			var URL = "https://api.census.gov/data/2016/pep/components?";
@@ -220,7 +220,7 @@ function findMatches(wordToMatch, stateFIPS) {
 }
 
 
-
+// needs to add list to dom
 function displayMatches() {
   const matchArray = findMatches(this.value, stateFIPS);
   const html = matchArray.map(place => {
@@ -235,30 +235,59 @@ function displayMatches() {
    		test(dex);
    		canSearch = false;
    	}
+   
     return `
-      <li ID="listItem">
+      <li class="listItem">
         <span class="name">${stateName}</span>
       </li>
     `;
   }).join('');
   suggestions.innerHTML = html;
+   	$(".listItem").click(function(event){
+		//console.log($(this).text().toUpperCase());
+		console.log($(".search"));
+		$(".search").val(`${$(this).text().toUpperCase().trim()}`);
+
+		
+	});
 }
 
 
 
 
  const searchInput = document.querySelector('.search');
+
+
  const suggestions = document.querySelector('.suggestions');
+// $("button").click(function(e){
+// 		 let key = e.which || e.keyCode;
+    
+     
+//       	for(let i=0; i < stateFIPS.length; i++){
+//       		let searchBar = $('#query').val();
+//       		if(stateFIPS[i].State === searchBar.toUpperCase()){
+//       			canSearch = true;
+
+//       		}
+
+//       		  else{console.log('wrong val');}
+      	
+//     		displayMatches();
+//     }
+	
+// 	});
 document.querySelector('.search-form').addEventListener('keypress', function (e) {
 	
     let key = e.which || e.keyCode;
     if (key === 13) { // 13 is enter
       // code for enter
+       // $("li").style.display ="none";
 
       keypress = 5;
-      console.log(searchInput);
+      
       	for(let i=0; i < stateFIPS.length; i++){
-      		if(stateFIPS[i].State === $('#query').val()){
+      		let searchBar = $('#query').val();
+      		if(stateFIPS[i].State === searchBar.toUpperCase()){
       			canSearch = true;
       		}
 
@@ -267,8 +296,16 @@ document.querySelector('.search-form').addEventListener('keypress', function (e)
     
     }
 });
+// function selectState(){
+// 	console.log(this.text());
+// }
+ // let suggestionClick; 
+	// suggestionClick = document.getElementById('listItem');	
+ //   	suggestionClick.addEventListener('click', selectState);
 
-
+function searchAutoFill(){
+	console.log(this);
+}
  searchInput.addEventListener('change', displayMatches);
  searchInput.addEventListener('keyup', displayMatches);
  });
