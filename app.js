@@ -219,18 +219,15 @@ function findMatches(wordToMatch, stateFIPS) {
   });
 }
 
-
-// needs to add list to dom
 function displayMatches() {
   const matchArray = findMatches(this.value, stateFIPS);
   const html = matchArray.map(place => {
     const regex = new RegExp(this.value, 'gi');
     const stateName = place.State.replace(regex, `<span class="hl">${this.value}</span>`);
     console.log(place);
-    const dex = stateFIPS.indexOf(place);
+   const dex = stateFIPS.indexOf(place);
     console.log(dex);
-   //const stateID = stateFIPS[dex].FIPS;
-  //console.log(stateID);
+  
    if(canSearch){
    		test(dex);
    		canSearch = false;
@@ -243,14 +240,16 @@ function displayMatches() {
     `;
   }).join('');
   suggestions.innerHTML = html;
+  //why doulble click, bug
    	$(".listItem").click(function(event){
 		//console.log($(this).text().toUpperCase());
-		console.log($(".search"));
+		
 		$(".search").val(`${$(this).text().toUpperCase().trim()}`);
-
+		 setTimeout(function () { $("#query").focus(); }, 20);
 		
 	});
 }
+//seorate index function from display function
 
 
 
@@ -284,7 +283,7 @@ document.querySelector('.search-form').addEventListener('keypress', function (e)
        // $("li").style.display ="none";
 
       keypress = 5;
-      
+     
       	for(let i=0; i < stateFIPS.length; i++){
       		let searchBar = $('#query').val();
       		if(stateFIPS[i].State === searchBar.toUpperCase()){
@@ -296,6 +295,20 @@ document.querySelector('.search-form').addEventListener('keypress', function (e)
     
     }
 });
+$("button").click(function(event){
+		for(let i=0; i < stateFIPS.length; i++){
+      		let searchBar = $('#query').val();
+      		if(stateFIPS[i].State === searchBar.toUpperCase()){
+      			canSearch = true;
+      			
+      		}
+
+      		  else{console.log('wrong val');}
+      	} 
+      	displayMatches();
+	console.log('hello');
+	});
+
 // function selectState(){
 // 	console.log(this.text());
 // }
