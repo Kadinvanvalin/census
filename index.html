@@ -5,18 +5,23 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-<form class="search-form">
-    <input type="text" class="search" id="query" autocomplete="off" placeholder="State"> <button  type="submit">Submit</button>
+<h1>Births and deaths of a state between July 1, 2015 and July 1, 2016</h1>
+<div class="container">
+	<form class="search-form">
+    	<input type="text" class="search" id="query" autocomplete="off" placeholder="State">
 
-    <ul class="suggestions">
-      <li>Filter for a State</li>
+    	<ul class="suggestions">
+      	<li>Filter for a State</li>
       
-    </ul>
-  </form>
+   			 </ul> <button class="submit" type="submit">Submit</button>
+  	</form>
   
-  <h1>Births and deaths of a state between July 1, 2015 and July 1, 2016</h1>
-  <p>Enter  <b>Press enter to submit</b></p>
-  <canvas id="myChart" ></canvas>
+  
+  <p>Enter  Press<b> enter </b> or click the submit button to submit</p>
+
+  </div>
+  <div class="easel"><canvas id="myChart" ></canvas></div>
+  
 </body>
 <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"

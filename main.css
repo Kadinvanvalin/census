@@ -4,6 +4,7 @@
       font-family:'helvetica neue';
       font-size: 20px;
       font-weight: 200;
+      border: 2px solid red;
     }
     *, *:before, *:after {
       box-sizing: inherit;
@@ -11,16 +12,21 @@
     input {
       width: 100%;
       padding:20px;
+      border: 2px solid red;
     }
     body{
-      
+      border: 2px solid red;
       margin-left:100px;
       margin-right:100px;
+      margin-top: 0px;
     }
 
     .search-form {
       max-width:400px;
       margin:10px auto;
+      margin-bottom: 50px;
+      border: 2px solid red;
+      display:inline-block;
     }
 
     input.search {
@@ -28,10 +34,8 @@
       text-align: center;
       outline:0;
       border: 10px solid #F7F7F7;
-      width: 80%;
-      left: -10%;
-      position: relative;
-      top: 10px;
+      width: 100%;
+  border: 2px solid red;
       z-index: 2;
       border-radius: 5px;
       font-size: 40px;
@@ -39,21 +43,77 @@
     }
 
     button{
-     display:inline-block;
+      margin-top: 30px;
+      float:right;
 
+     /*display:inline-block;*/
+
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+/*mobile*/
+    .container{
+    width:100%;
+     display: inline-block;
+     top:10px;
+     vertical-align: text-top;
+     border: 2px solid red;}
+    .easel{ border: 2px solid red;
+      width: 100%;
+      display: inline-block;
+      vertical-align: text-top;
     }
+@media only screen and (min-device-width: 768px) {
+    /* For desktop: */
+   .container{
+    width:35%;
+     display: inline-block;
+     top:10px;
+     vertical-align: text-top;
+     border: 2px solid red;}
+    .easel{ border: 2px solid red;
+      width: 60%;
+      display: inline-block;
+      vertical-align: text-top;
+    }
+}
     .suggestions {
       margin: 0;
       padding: 0;
-      position: relative;
-      /*perspective:20px;*/
+      border: 2px solid red;
+     
     }
     .suggestions {
-      max-width: 400px;
+      max-width: 100%;
      position:absolute; 
+     border: 2px solid red;
     }
+    
     .suggestions li {
-
+border: 2px solid red;
       background:white;
       list-style: none;
       border-bottom: 1px solid #D8D8D8;
@@ -69,10 +129,12 @@
     .suggestions li:nth-child(even) {
       transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
       background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%);
+      border: 2px solid red;
     }
     .suggestions li:nth-child(odd) {
       transform: perspective(100px) rotateX(-3deg) translateY(3px);
       background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
+      border: 2px solid red;
     }
   
     
@@ -80,6 +142,7 @@
     .details {
       text-align: center;
       font-size: 15px;
+      border: 2px solid red;
     }
 
     .hl {

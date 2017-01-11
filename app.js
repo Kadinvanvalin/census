@@ -179,6 +179,7 @@ let state = stateFIPS[keypress].FIPS;
                  obj[stream1[i]] = stream2[i];
            } 
            [birthsAndDeaths[0], birthsAndDeaths[1]] = [obj.BIRTHS, obj.DEATHS];
+           $('.listItem').hide()
            myChart.update();
            console.log(myChart.data.datasets);     
    }
@@ -194,7 +195,7 @@ let state = stateFIPS[keypress].FIPS;
 				key:"a912e352a634b630f370a38232e3a6a2c7c01a2e"
 			});
 		}
-		http://api.census.gov/data/2010/sf1?key=[user key]&get=PCT012A015,PCT012A119&for=state:01
+		
 		var promised = birthsDeathsState();
 		
 		promised.done((data) => createObject(data));
@@ -255,7 +256,7 @@ function displayMatches() {
 
 
  const searchInput = document.querySelector('.search');
-
+const submitButton = document.querySelector('.submit');
 
  const suggestions = document.querySelector('.suggestions');
 // $("button").click(function(e){
@@ -319,6 +320,8 @@ $("button").click(function(event){
 function searchAutoFill(){
 	console.log(this);
 }
+
  searchInput.addEventListener('change', displayMatches);
  searchInput.addEventListener('keyup', displayMatches);
+ submitButton.addEventListener('click', displayMatches);
  });
